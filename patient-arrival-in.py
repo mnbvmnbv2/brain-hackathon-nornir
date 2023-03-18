@@ -8,9 +8,9 @@ import pandas as pd
 predict_var = ["weekday", "month", "time"]
 response = "arrivalrate"
 
-data = pd.read("data/data.csv")
+data = pd.read_csv("data/data.csv")
 
-predictor = ArrivalPrediction(data, predict_var, response, 100)
+predictor = ArrivalPrediction(data, predict_var, response, 1)
 
 headers = {
     "Synx-Cat": "4",
@@ -35,9 +35,9 @@ def main():
                     sample = ast.literal_eval(
                         re.search("<SAMPLE>(.*)</SAMPLE>", message).group(1)
                     )
-                    print(predictor.predict_rate(sample))
+                    print("pred", predictor.predict_rate(sample))
                     predictor.sampleIn(sample)
-                    print(sample)
+                    print("sample", sample)
 
 
 if __name__ == "__main__":
