@@ -6,7 +6,7 @@ from make_model_and_predict import ArrivalPrediction
 import pandas as pd
 
 predict_var = ["weekday", "month", "time"]
-response = "arrival_rate"
+response = "arrivalrate"
 
 data = pd.read("data/data.csv")
 
