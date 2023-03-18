@@ -43,8 +43,8 @@ def main():
             (1, 1),
             (2, 1),
             (3, 1),
-            (4, 1),
-            (5, 1),
+            (4, 2),
+            (5, 2),
             (6, 1),
         ]
         # month with arrival coefficient
@@ -79,8 +79,8 @@ def main():
 
         # times with arrival coefficient
         times = [
-            (3600 * 0, 1),
-            (3600 * 1, 1),
+            (3600 * 0, 2),
+            (3600 * 1, 3),
             (3600 * 2, 1),
             (3600 * 3, 1),
             (3600 * 4, 1),
@@ -103,7 +103,6 @@ def main():
             (3600 * 21, 1),
             (3600 * 22, 1),
             (3600 * 23, 1),
-            # (3600*24, 1),
         ]
         weekday_idx = np.random.randint(0, len(weekdays))
         weekday = weekdays[weekday_idx]
