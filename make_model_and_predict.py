@@ -27,6 +27,6 @@ class ArrivalPrediction:
             return None
 
     def update_model(self):
-        xgb_model = xgb.XGBRegressor(n_estimates=1000, learning_rate=0.05, n_jobs=-1)
+        xgb_model = xgb.XGBRegressor(n_estimators=1000, learning_rate=0.05, n_jobs=-1)
         xgb_model.fit(self.totData[self.predictor], self.totData[self.response])
         self.model = xgb_model
