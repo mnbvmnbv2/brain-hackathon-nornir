@@ -1,7 +1,9 @@
 import asyncio
 import aiohttp
 import time
-import numpy as np
+import serial
+
+ser = serial.Serial("COM3", 9600, timeout=1)
 
 headers = {
     "Synx-Cat": "1",
@@ -29,10 +31,10 @@ async def to_hive(number: int):
 def main():
     while True:
         # weekdays with arrival coefficient
-        output = None
+        s = ser.read(1000)
 
-        asyncio.run(to_hive(str(output)))
-        print(f"Sent: {output}")
+        asyncio.run(to_hive(str(s)))
+        print(f"Sent: {s}")
         time.sleep(5)
 
 
