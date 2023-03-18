@@ -3,7 +3,11 @@ import time
 import re
 import ast
 from make_model_and_predict import ArrivalPrediction
+import warnings
+
+warnings.simplefilter(action="ignore", category=FutureWarning)
 import pandas as pd
+import numpy as np
 
 predict_var = ["weekday", "month", "time"]
 response = "arrivalrate"
@@ -35,7 +39,12 @@ def main():
                     sample = ast.literal_eval(
                         re.search("<SAMPLE>(.*)</SAMPLE>", message).group(1)
                     )
-                    print("pred", predictor.predict_rate(sample))
+                    time_to_wait = np.random.randint(1, 10)
+                    # print(f"predict {time_to_wait} min")
+                    pred = predictor.predict_rate(sample)
+                    if pred is not None:
+                        pred = round(pred[0])
+                    print("pred", pred)
                     predictor.sampleIn(sample)
                     print("sample", sample)
 

@@ -20,11 +20,19 @@ class ArrivalPrediction:
             self.update_model()
 
     def predict_rate(self, sample):
-        try:
-            pred = self.model.predict(pd.DataFrame(sample)[self.predictor])
+        # print(self.model)
+        if not self.model is None:
+            # try:
+            # print("sample", type(sample), sample)
+            dct = {k: [v] for k, v in sample.items()}
+            X = pd.DataFrame.from_dict(dct)
+            # print(X)
+            X = X[self.predictor]
+            # print("X", type(X))
+            pred = self.model.predict(X)
             return pred
-        except:
-            return None
+        # except:
+        #     return None
 
     def update_model(self):
         xgb_model = xgb.XGBRegressor(n_estimators=1000, learning_rate=0.05, n_jobs=-1)
