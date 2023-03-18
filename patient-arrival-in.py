@@ -1,11 +1,10 @@
-import asyncio
-import aiohttp
+import requests
 import time
 import re
+import ast
 
 headers = {
     "Synx-Cat": "4",
-    "Content-Type": "application/x-www-form-urlencoded",
 }
 
 data = {
@@ -13,25 +12,25 @@ data = {
     "objectID": "1",
 }
 
-# async await for response
-async def getter():
-    async with aiohttp.ClientSession() as session:
-        async with session.post(
-            "https://randoms-squad.cioty.com/patient-arrival",  # URL TO LISTEN TO
-            headers=headers,
-            data=data,
-        ) as response:
-            return await response.text()
+url = "https://randoms-squad.cioty.com/patient-arrival"
 
 
 def main():
-    while True:
-        response = asyncio.run(getter())
-        # scrape data from response
-        print(response)
-        # response = re.findall(r"sample=(\d+)", response)
-        time.sleep(10)
+    with requests.post(url, headers=headers, data=data, stream=True) as response:
+        for line in response.iter_lines():
+            if line:
+                # print(line.decode("utf-8"))
+                message = line.decode("utf-8")
+                if "<SAMPLE>" in message:
+                    # Take action based on the message
+                    sample = ast.literal_eval(
+                        re.search("<SAMPLE>(.*)</SAMPLE>", message).group(1)
+                    )
+                    print(sample)
 
 
 if __name__ == "__main__":
-    main()
+    while True:
+        main()
+        time.sleep(10)
+        print("iter")
