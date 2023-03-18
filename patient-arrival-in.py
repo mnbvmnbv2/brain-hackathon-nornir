@@ -35,6 +35,8 @@ def main():
                     sample = ast.literal_eval(
                         re.search("<SAMPLE>(.*)</SAMPLE>", message).group(1)
                     )
+                    print(predictor.predict_rate(sample))
+                    predictor.sampleIn(sample)
                     print(sample)
 
 
