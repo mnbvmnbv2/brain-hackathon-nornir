@@ -20,7 +20,7 @@ class ArrivalPrediction:
             self.update_model()
     
     def predict_rate(self, sample):
-        return self.model.predict(sample[self.predictor])
+        return self.model.predict(pd.DataFrame(sample)[self.predictor])
 
     def update_model(self):
         xgb_model = xgb.XGBRegressor(n_estimates = 1000,
