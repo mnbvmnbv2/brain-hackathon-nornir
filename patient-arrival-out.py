@@ -29,57 +29,81 @@ async def to_hive(number: int):
 def main():
     while True:
         # weekdays with arrival coefficient
+        # weekdays = [
+        #     ("Monday", 1),
+        #     ("Tuesday", 1),
+        #     ("Wednesday", 1),
+        #     ("Thursday", 1),
+        #     ("Friday", 1),
+        #     ("Saturday", 1),
+        #     ("Sunday", 1),
+        # ]
         weekdays = [
-            ("Monday", 1),
-            ("Tuesday", 1),
-            ("Wednesday", 1),
-            ("Thursday", 1),
-            ("Friday", 1),
-            ("Saturday", 1),
-            ("Sunday", 1),
+            (0, 1),
+            (1, 1),
+            (2, 1),
+            (3, 1),
+            (4, 1),
+            (5, 1),
+            (6, 1),
         ]
         # month with arrival coefficient
+        # months = [
+        #     ("January", 1),
+        #     ("February", 1),
+        #     ("March", 1),
+        #     ("April", 1),
+        #     ("May", 1),
+        #     ("June", 1),
+        #     ("July", 1),
+        #     ("August", 1),
+        #     ("September", 1),
+        #     ("October", 1),
+        #     ("November", 1),
+        #     ("December", 1),
+        # ]
         months = [
-            ("January", 1),
-            ("February", 1),
-            ("March", 1),
-            ("April", 1),
-            ("May", 1),
-            ("June", 1),
-            ("July", 1),
-            ("August", 1),
-            ("September", 1),
-            ("October", 1),
-            ("November", 1),
-            ("December", 1),
+            (0, 1),
+            (1, 1),
+            (2, 1),
+            (3, 1),
+            (4, 1),
+            (5, 1),
+            (6, 1),
+            (7, 1),
+            (8, 1),
+            (9, 1),
+            (10, 1),
+            (11, 1),
         ]
 
         # times with arrival coefficient
         times = [
-            ("00:00", 1),
-            ("01:00", 1),
-            ("02:00", 1),
-            ("03:00", 1),
-            ("04:00", 1),
-            ("05:00", 1),
-            ("06:00", 1),
-            ("07:00", 1),
-            ("08:00", 1),
-            ("09:00", 1),
-            ("10:00", 1),
-            ("11:00", 1),
-            ("12:00", 1),
-            ("13:00", 1),
-            ("14:00", 1),
-            ("15:00", 1),
-            ("16:00", 1),
-            ("17:00", 1),
-            ("18:00", 1),
-            ("19:00", 1),
-            ("20:00", 1),
-            ("21:00", 1),
-            ("22:00", 1),
-            ("23:00", 1),
+            (3600 * 0, 1),
+            (3600 * 1, 1),
+            (3600 * 2, 1),
+            (3600 * 3, 1),
+            (3600 * 4, 1),
+            (3600 * 5, 1),
+            (3600 * 6, 1),
+            (3600 * 7, 1),
+            (3600 * 8, 1),
+            (3600 * 9, 1),
+            (3600 * 10, 1),
+            (3600 * 11, 1),
+            (3600 * 12, 1),
+            (3600 * 13, 1),
+            (3600 * 14, 1),
+            (3600 * 15, 1),
+            (3600 * 16, 1),
+            (3600 * 17, 1),
+            (3600 * 18, 1),
+            (3600 * 19, 1),
+            (3600 * 20, 1),
+            (3600 * 21, 1),
+            (3600 * 22, 1),
+            (3600 * 23, 1),
+            # (3600*24, 1),
         ]
         weekday_idx = np.random.randint(0, len(weekdays))
         weekday = weekdays[weekday_idx]
@@ -100,7 +124,7 @@ def main():
 
         asyncio.run(to_hive(str(output)))
         print(f"Sent: {output}")
-        time.sleep(10)
+        time.sleep(5)
 
 
 if __name__ == "__main__":
