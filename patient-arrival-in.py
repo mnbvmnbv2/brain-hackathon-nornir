@@ -2,6 +2,15 @@ import requests
 import time
 import re
 import ast
+from make_model_and_predict import ArrivalPrediction
+import pandas as pd
+
+predict_var = ["weekday", "month", "time"]
+response = "arrival_rate"
+
+data = pd.read("data/data.csv")
+
+predictor = ArrivalPrediction(data, predict_var, response, 100)
 
 headers = {
     "Synx-Cat": "4",
